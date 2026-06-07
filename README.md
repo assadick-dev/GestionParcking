@@ -4,11 +4,6 @@ Système de gestion d'un parking automatisé : entrée/sortie des véhicules,
 attribution des places, abonnements, services additionnels (entretien,
 maintenance, livraison) et suivi des super-abonnés.
 
-Ce dépôt regroupe en une seule version (branche `main`) ce qui était
-auparavant éclaté entre les branches `partie0` (squelette de classes) et
-`partie1` (premier jet de logique métier). Le code a été restructuré,
-nettoyé des incohérences/typos accumulées au fil des itérations, et complété.
-
 ## Objectifs du projet
 
 1. **Modéliser le domaine** : Parking, Place, Voiture, Client, Service
@@ -64,4 +59,4 @@ python3 -m unittest classeTest.py -v
 
 ## Auteur
 
-Abdelrahim Annadif Assadick — Master MI, Université Toulouse 2.
+Abdelrahim Annadif Assadick — L3 MIASHS, Université Toulouse 2.
