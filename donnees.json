@@ -1,0 +1,132 @@
+[
+    {
+      "client": {
+        "nom": "Rania",
+        "adresse": "59000, Lille",
+        "moyen_paiement": "CB",
+        "superabonne": true
+      },
+      "voiture": {
+        "longueur": 3,
+        "hauteur": 2,
+        "immatriculation": "UV-345-OP"
+      }
+    },
+    {
+      "client": {
+        "nom": "Assadick",
+        "adresse": "31100, Toulouse",
+        "moyen_paiement": "CB",
+        "superabonne": false
+      },
+      "voiture": {
+        "longueur": 2,
+        "hauteur": 3,
+        "immatriculation": "EF-441-TX"
+      }
+    },
+    {
+      "client": {
+        "nom": "Sophie",
+        "adresse": "75000, Paris",
+        "moyen_paiement": "VISA",
+        "superabonne": true
+      },
+      "voiture": {
+        "longueur": 3.5,
+        "hauteur": 2.5,
+        "immatriculation": "PQ-123-RM"
+      }
+    },
+    {
+      "client": {
+        "nom": "Nabil",
+        "adresse": "13000, Marseille",
+        "moyen_paiement": "MasterCard",
+        "superabonne": false
+      },
+      "voiture": {
+        "longueur": 3,
+        "hauteur": 3,
+        "immatriculation": "AR-987-LK"
+      }
+    },
+    {
+      "client": {
+        "nom": "Claire",
+        "adresse": "69000, Lyon",
+        "moyen_paiement": "PayPal",
+        "superabonne": true
+      },
+      "voiture": {
+        "longueur": 3,
+        "hauteur": 2,
+        "immatriculation": "ZX-645-OP"
+      }
+    },
+    {
+      "client": {
+        "nom": "Maxime",
+        "adresse": "34000, Montpellier",
+        "moyen_paiement": "CB",
+        "superabonne": true
+      },
+      "voiture": {
+        "longueur": 3,
+        "hauteur": 2,
+        "immatriculation": "JK-122-VB"
+      }
+    },
+    {
+      "client": {
+        "nom": "Lina",
+        "adresse": "59000, Lille",
+        "moyen_paiement": "VISA",
+        "superabonne": false
+      },
+      "voiture": {
+        "longueur": 2,
+        "hauteur": 2.5,
+        "immatriculation": "MH-315-TY"
+      }
+    },
+    {
+      "client": {
+        "nom": "Hugo",
+        "adresse": "45000, Orléans",
+        "moyen_paiement": "MasterCard",
+        "superabonne": true
+      },
+      "voiture": {
+        "longueur": 2,
+        "hauteur": 3,
+        "immatriculation": "LP-237-XF"
+      }
+    },
+    {
+      "client": {
+        "nom": "Amandine",
+        "adresse": "80000, Amiens",
+        "moyen_paiement": "CB",
+        "superabonne": true
+      },
+      "voiture": {
+        "longueur": 3,
+        "hauteur": 2,
+        "immatriculation": "ET-566-YX"
+      }
+    },
+    {
+      "client": {
+        "nom": "Jonathan",
+        "adresse": "44000, Nantes",
+        "moyen_paiement": "VISA",
+        "superabonne": true
+      },
+      "voiture": {
+        "longueur": 2,
+        "hauteur": 3,
+        "immatriculation": "LR-314-GV"
+      }
+    }
+  ]

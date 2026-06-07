@@ -1,92 +1,67 @@
-# Projet_Python_GestionParking
+# Projet Python — Gestion de Parking
 
+Système de gestion d'un parking automatisé : entrée/sortie des véhicules,
+attribution des places, abonnements, services additionnels (entretien,
+maintenance, livraison) et suivi des super-abonnés.
 
+Ce dépôt regroupe en une seule version (branche `main`) ce qui était
+auparavant éclaté entre les branches `partie0` (squelette de classes) et
+`partie1` (premier jet de logique métier). Le code a été restructuré,
+nettoyé des incohérences/typos accumulées au fil des itérations, et complété.
 
-## Getting started
+## Objectifs du projet
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+1. **Modéliser le domaine** : Parking, Place, Voiture, Client, Service
+   (Maintenance / Entretien), Ticket.
+2. **Gérer le cycle de vie d'un stationnement** :
+   - un client se présente avec sa voiture → la caméra capture ses
+     caractéristiques (longueur, hauteur, immatriculation) ;
+   - le système cherche une place libre compatible et gare la voiture ;
+   - une borne délivre un ticket ;
+   - à la sortie, le ticket permet de libérer la place.
+3. **Gérer les abonnements** : un client peut devenir abonné ou
+   super-abonné ; les super-abonnés disposent d'une place garantie même
+   lorsque le parking est complet (liste « parking garanti »).
+4. **Gérer les services additionnels** liés à un client : demande de
+   maintenance, d'entretien ou de livraison de véhicule.
+5. **Simuler un scénario complet** à partir d'un jeu de données
+   (`donnees.json`) rejouant l'arrivée de plusieurs clients, et vérifier
+   le comportement via une suite de tests unitaires.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+## Architecture
 
-## Add your files
+| Fichier | Rôle |
+|---|---|
+| `place.py` | Une place de parking (numéro, niveau, dimensions, disponibilité). |
+| `voiture.py` | Une voiture (dimensions, immatriculation, état de stationnement). |
+| `client.py` | Un client du parking (identité, voiture, abonnement, services demandés). |
+| `service.py` | Classe de base d'un service rendu à un client (date, apport). |
+| `maintenance.py`, `entretien.py` | Services spécialisés héritant de `Service`. |
+| `camera.py` | Capture des caractéristiques d'une voiture détectée. |
+| `panneau.py` | Panneau d'affichage du nombre de places disponibles. |
+| `acces.py` | Point d'accès qui orchestre caméra + panneau lors d'une entrée. |
+| `borneTicket.py` | Délivrance et affichage des tickets de stationnement. |
+| `teleporteur.py` | Acheminement (symbolique) d'une voiture vers sa place. |
+| `parking.py` | Cœur du système : places, abonnés, attribution/libération de places. |
+| `interface.py` | Couche d'interaction (menus en console), séparée de la logique métier pour rester testable. |
+| `main.py` | Scénario de simulation rejouant `donnees.json`. |
+| `classeTest.py` | Suite de tests unitaires (`unittest`) du système. |
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+La logique métier (`parking.py`, `client.py`, …) ne fait aucun appel à
+`input()` : les interactions utilisateur sont concentrées dans
+`interface.py`, ce qui permet de tester le cœur du système sans
+simulation d'entrées clavier.
 
+## Utilisation
+
+```bash
+# Lancer la simulation
+python3 main.py
+
+# Lancer les tests unitaires
+python3 -m unittest classeTest.py -v
 ```
-cd existing_repo
-git remote add origin https://mi-git.univ-tlse2.fr/abdelrahim-annadif.assadick/projet_python_gestionparking.git
-git branch -M main
-git push -uf origin main
-```
 
-## Integrate with your tools
+## Auteur
 
-- [ ] [Set up project integrations](https://mi-git.univ-tlse2.fr/abdelrahim-annadif.assadick/projet_python_gestionparking/-/settings/integrations)
-
-## Collaborate with your team
-
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+Abdelrahim Annadif Assadick — Master MI, Université Toulouse 2.
